@@ -1,4 +1,5 @@
 import { getRequestTo, postRequestTo } from "./requests.js";
+import * as storage from "./storage.js";
 
 const URL_PROFILES = "https://localhost:5001/api/Profile";
 
@@ -32,8 +33,11 @@ function addProfileCard(profile){
         </div>
     `
 
-    profileEl.addEventListener("click", () =>{
-        console.log(`Go to ${profile.name} dashboard`);
+    profileEl.addEventListener("click", (e) =>{
+        e.preventDefault();
+        
+        storage.setAnimal(profile);
+        location.assign("dashboard.html");
     });
 
     cardsContainer.appendChild(profileEl);
