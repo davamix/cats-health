@@ -1,0 +1,1 @@
+export const URL_PROFILES = "https://localhost:5001/api/Profile";

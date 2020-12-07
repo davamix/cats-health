@@ -1,13 +1,14 @@
 import { getRequestTo, postRequestTo } from "./requests.js";
 import * as storage from "./storage.js";
+import * as urls from "./urls.js";
 
 const URL_PROFILES = "https://localhost:5001/api/Profile";
 
 const cardsContainer = document.getElementById("profile-cards-container");
-const coverImage = "https://via.placeholder.com/400x225.webp?text=Profile+Picture";
+const profileImageDefault = "https://via.placeholder.com/400x225.webp?text=Profile+Picture";
 
 function loadProfiles(){
-    getRequestTo(URL_PROFILES)
+    getRequestTo(urls.URL_PROFILES)
         .then(data => {
             cardsContainer.innerHTML = "";
             
@@ -21,7 +22,7 @@ function loadProfiles(){
 
 function addProfileCard(profile){
     const profileEl = document.createElement("div");
-    const profileImage = (profile.image) ? profile.image : coverImage;
+    const profileImage = (profile.image) ? profile.image : profileImageDefault;
 
     profileEl.classList.add("profile-card");
 
