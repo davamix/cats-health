@@ -15,11 +15,12 @@ function loadProfiles(){
     profilePanel.innerHTML = "";
 
     getRequestTo(urls.URL_PROFILES)
-        .then(data => {            
+        .then(data => {
             data.forEach(profile =>{
                 addProfileTab(profile);
             });
-        });
+        })
+        .then(() => addProfileNewTab());
 }
 
 function addProfileTab(profile){
@@ -34,13 +35,34 @@ function addProfileTab(profile){
 
     profileEl.addEventListener("click", (e) =>{
         e.preventDefault();
-        
+
         storage.setAnimal(profile);
         location.reload();
     })
 
     profilePanel.appendChild(profileEl);
+}
 
+function addProfileNewTab(){
+    const profileEl = document.createElement("div");
+    profileEl.classList.add("profile-tab");
+
+    profileEl.innerHTML = `
+        <button class="profile-tab-add-btn" title="Add new profile">
+            <i class="fas fa-paw fa-4x"></i>
+        </button>
+    `
+
+    const addButton = profileEl.querySelector(".profile-tab-add-btn");
+
+    addButton.addEventListener("click", (e) =>{
+        e.preventDefault();
+
+        console.log("Add new profile");
+    })
+    profilePanel.appendChild(profileEl);
 }
 
 loadProfiles();
+
+
