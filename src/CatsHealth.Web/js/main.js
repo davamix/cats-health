@@ -56,6 +56,8 @@ function addProfileNewButton(){
 
     profileEl.addEventListener("click", ()=>{
         console.log("Add new profile");
+        storage.setAnimal("");
+        location.assign("dashboard.html");
     });
 
     cardsContainer.appendChild(profileEl);

@@ -10,19 +10,82 @@
     <script type="module" src="js/dashboard.js" defer></script>
 </head>
 
-<main id="main">
-    <div class="row">
-        <div class="column">
-            <div class="profile-panel" id="profile-panel"></div>
-        </div>
-        <div class="column">
-            <div class="dashboard" id="dashboard">
-                
+<body>
+    <main id="main">
+        <div class="row">
+            <div class="column">
+                <div class="profile-panel" id="profile-panel"></div>
             </div>
+            <div class="column">
+                <div class="dashboard" id="dashboard">
+
+                </div>
+            </div>
+
         </div>
-        
+    </main>
+
+    <div class="profile-window" id="profile-window">
+        <span class="popup-container"></span>
+
+        <div class="popup-content">
+            <span class="title">Animal profile</span>
+
+            <div class="animal-profile">
+                <div>
+                    <label>
+                        Name
+                        <input type="text" placeholder="Animal name" name="animal-name" id="animal-name">
+                    </label>
+                    <label>
+                        Species
+                        <input type="text" placeholder="Animal species" name="animal-species" id="animal-species">
+                    </label>
+
+                    <label>
+                        Birthdate
+                        <input type="date" name="birthdate" id="birthdate" min="2000-01-01">
+                    </label>
+
+                    <form>
+                        <fieldset>
+                            <legend>Sex</legend>
+
+                            <input type="radio" name="animal-sex" id="animal-sex-male" value="male">
+                            <label for="animal-sex-male">Male</label>
+
+
+                            <input type="radio" name="animal-sex" id="animal-sex-female" value="female">
+                            <label for="animal-sex-female">Female</label>
+                        </fieldset>
+                    </form>
+
+
+                </div>
+
+
+                <div class="right">
+                    <input type="file" id="select-picture-dialog" accept="image/*" style="display: none;">
+                    <button class="select-picture" id="select-picture" title="Select profile picture">
+                        <i class="far fa-image fa-3x"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <button class="save" id="save" title="Save profile">
+                    <li class="fas fa-save"></li> Save
+                </button>
+                <button class="close" id="close" title="Close window">
+                    <li class="fas fa-times"></li> Close
+                </button>
+            </div>
+
+        </div>
+
+
     </div>
-    
-</main>
+
+</body>
 
 </html>

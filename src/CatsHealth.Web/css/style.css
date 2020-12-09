@@ -139,3 +139,106 @@ main{
     margin-left: 2rem;
 }
 
+/* PROFILE WINDOW */
+
+.profile-window{
+    background: rgba(0,0,0,.4);
+    display: none;
+    height:100%;
+    position: fixed;
+    text-align:center;
+    top: 0;
+    width: 100%;
+    z-index:10000;
+}
+
+.profile-window .popup-container{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.profile-window .popup-content{
+    border-radius: 10px;
+}
+
+.profile-window .title{
+    background-color: #87c197;
+    color: #ebfffb;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.profile-window .animal-profile{
+    background-color: #ebfffb;
+    color: #000;
+    overflow: hidden;
+    width: 100%;
+    padding:0.5rem;
+    text-align: left;
+    display:grid;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    grid-template-columns: 60% 40%;
+}
+
+.profile-window .right{
+    text-align: center;
+}
+
+.profile-window .select-picture{
+    background-color: transparent;
+    border: 1px solid #87c197;
+    height: 100%;
+    width: 60%;
+    max-height: 185px;
+    cursor: pointer;
+}
+
+.profile-window img{
+    max-width: 130px;
+    max-height: 130px;
+}
+
+.profile-window input[type="text"], input[type="date"]{
+    width: 100%;
+    margin-bottom: 1rem;
+    min-height: 2rem;
+}
+
+.profile-window fieldset{
+    border: 1px solid #87c197;
+    margin-bottom: 1rem;
+}
+
+.profile-window .toolbar{
+    background-color: #87c197;
+    /* color:#ebe5e2; */
+    display:flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    border-radius: 0 0 5px 5px;
+}
+
+.profile-window .toolbar button{
+    background-color: transparent;
+    border: none;
+    color: #ebfffb;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.profile-window > div{
+    background-color: #fff;
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    max-width: 551px;
+    min-height: 100px;
+    width: 60%;
+    height: auto;
+}
