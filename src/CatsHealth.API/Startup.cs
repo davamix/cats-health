@@ -31,7 +31,7 @@ namespace CatsHealth.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<IStorageProvider<Profile>, ProfileStorage>();
+            services.AddSingleton<IStorageProvider<Profile>, ProfileStorage>();
             services.AddScoped<IRepository<Profile>, ProfileRepository>();
             services.AddScoped<IProfileService, ProfileService>();
 

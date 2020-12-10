@@ -28,7 +28,7 @@ namespace CatsHealth.API.Data.StorageProviders
 
         public void Insert(Profile item)
         {
-            throw new NotImplementedException();
+            Profiles.Add(item);
         }
 
         public Profile Update(string id, Profile item)

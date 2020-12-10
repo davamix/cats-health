@@ -32,7 +32,7 @@ namespace CatsHealth.API.Controllers
         [HttpPost]
         public ActionResult<ProfileResponseDto> AddProfile([FromBody] ProfileRequestDto profile)
         {
-            var response = new ProfileResponseDto(Guid.NewGuid().ToString(), profile.Name);
+            var response = profileService.Save(profile);
 
             return Ok(response);
         }

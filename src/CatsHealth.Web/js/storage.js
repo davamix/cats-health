@@ -10,4 +10,8 @@ function getAnimal(){
     return JSON.parse(localStorage.getItem(CURRENT_ANIMAL));
 }
 
-export { setAnimal, getAnimal };
+function removeAnimal(){
+    localStorage.removeItem(CURRENT_ANIMAL);
+}
+
+export { setAnimal, getAnimal, removeAnimal };

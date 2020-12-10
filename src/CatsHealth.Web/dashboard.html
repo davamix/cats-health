@@ -33,6 +33,7 @@
 
             <div class="animal-profile">
                 <div>
+                    <input type="hidden" id="animal-id">
                     <label>
                         Name
                         <input type="text" placeholder="Animal name" name="animal-name" id="animal-name">
@@ -44,18 +45,18 @@
 
                     <label>
                         Birthdate
-                        <input type="date" name="birthdate" id="birthdate" min="2000-01-01">
+                        <input type="date" name="animal-birthdate" id="animal-birthdate" min="2000-01-01">
                     </label>
 
-                    <form>
+                    <form name="animal_sex">
                         <fieldset>
                             <legend>Sex</legend>
 
-                            <input type="radio" name="animal-sex" id="animal-sex-male" value="male">
+                            <input type="radio" name="animal_sex" id="animal-sex-male" value="male">
                             <label for="animal-sex-male">Male</label>
 
 
-                            <input type="radio" name="animal-sex" id="animal-sex-female" value="female">
+                            <input type="radio" name="animal_sex" id="animal-sex-female" value="female">
                             <label for="animal-sex-female">Female</label>
                         </fieldset>
                     </form>

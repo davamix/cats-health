@@ -8,6 +8,15 @@ const profilePanel = document.getElementById("profile-panel");
 
 const profileImageDefault = "https://via.placeholder.com/120x67.webp";
 
+// EVENTS 
+
+document.addEventListener("profile-saved", (e) =>{
+    loadProfiles();
+    // insertProfile with e data in order to avoid a request in loadProfiles??
+});
+
+// FUNCTIONS
+
 function loadProfiles(){
     profilePanel.innerHTML = "";
 
@@ -55,7 +64,6 @@ function addProfileNewTab(){
     addButton.addEventListener("click", (e) =>{
         e.preventDefault();
 
-        console.log("Add new profile");
         openProfileWindow();
     });
 

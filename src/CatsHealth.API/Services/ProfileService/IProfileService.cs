@@ -7,5 +7,7 @@ namespace CatsHealth.API.Services.ProfileService
     {
         ProfileResponseDto  GetProfile(string id);
         IList<ProfileResponseDto> GetProfiles();
+
+        ProfileResponseDto Save(ProfileRequestDto profile);
     }
 }

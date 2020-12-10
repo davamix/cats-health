@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using CatsHealth.API.Data.Entities;
 using CatsHealth.API.Data.Repositories;
 using CatsHealth.API.Dtos;
+using CatsHealth.API.Mappers;
 
 namespace CatsHealth.API.Services.ProfileService
 {
@@ -31,6 +33,21 @@ namespace CatsHealth.API.Services.ProfileService
             }
 
             return dtos;
+        }
+
+        public ProfileResponseDto Save(ProfileRequestDto dto)
+        {
+            try
+            {
+                var entity = dto.ToProfile();
+
+                entity.Id = Guid.NewGuid().ToString();
+
+                profileRepository.Insert(entity);
+
+                return new ProfileResponseDto(entity.Id, entity.Name);
+            }
+            catch (Exception) { throw; }
         }
     }
 }

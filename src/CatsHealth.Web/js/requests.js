@@ -2,7 +2,7 @@ async function getRequestTo(url) {
     return await fetch(url).then(response => response.json());
 }
 
-async function postRequestTo(url, data){
+async function postRequestTo(url, data) {
     return await fetch(url, {
         method: "POST",
         headers: {
