@@ -1,5 +1,12 @@
 async function getRequestTo(url) {
-    return await fetch(url).then(response => response.json());
+    return await fetch(url)
+        .then(response => {
+            if (response.status == 204) {
+                return "";
+            }
+
+            return response.json();
+        });
 }
 
 async function postRequestTo(url, data) {
@@ -10,7 +17,7 @@ async function postRequestTo(url, data) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json());
+        .then(response => response.json());
 }
 
 export { getRequestTo, postRequestTo };

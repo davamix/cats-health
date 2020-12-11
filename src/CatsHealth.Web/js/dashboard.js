@@ -10,26 +10,28 @@ const profileImageDefault = "https://via.placeholder.com/120x67.webp";
 
 // EVENTS 
 
-document.addEventListener("profile-saved", (e) =>{
+document.addEventListener("profile-saved", (e) => {
     loadProfiles();
     // insertProfile with e data in order to avoid a request in loadProfiles??
 });
 
 // FUNCTIONS
 
-function loadProfiles(){
+function loadProfiles() {
     profilePanel.innerHTML = "";
 
     getRequestTo(urls.URL_PROFILES)
         .then(data => {
-            data.forEach(profile =>{
-                addProfileTab(profile);
-            });
+            if (data) {
+                data.forEach(profile => {
+                    addProfileTab(profile);
+                });
+            }
         })
         .then(() => addProfileNewTab());
 }
 
-function addProfileTab(profile){
+function addProfileTab(profile) {
     const profileImage = (profile.image) ? profile.image : profileImageDefault;
 
     const profileEl = document.createElement("div");
@@ -39,7 +41,7 @@ function addProfileTab(profile){
         <img src="${profileImage}" class="profile-tab-picture" title="${profile.name}" />
     `
 
-    profileEl.addEventListener("click", (e) =>{
+    profileEl.addEventListener("click", (e) => {
         e.preventDefault();
 
         storage.setAnimal(profile);
@@ -49,7 +51,7 @@ function addProfileTab(profile){
     profilePanel.appendChild(profileEl);
 }
 
-function addProfileNewTab(){
+function addProfileNewTab() {
     const profileEl = document.createElement("div");
     profileEl.classList.add("profile-tab");
 
@@ -61,7 +63,7 @@ function addProfileNewTab(){
 
     const addButton = profileEl.querySelector(".profile-tab-add-btn");
 
-    addButton.addEventListener("click", (e) =>{
+    addButton.addEventListener("click", (e) => {
         e.preventDefault();
 
         openProfileWindow();
@@ -70,14 +72,14 @@ function addProfileNewTab(){
     profilePanel.appendChild(profileEl);
 }
 
-function loadDashboard(){
+function loadDashboard() {
     const animal = storage.getAnimal();
 
-    if(animal){
+    if (animal) {
         dashboard.innerHTML = `<h1>${animal.name}'s Dashboard`;
-    }else{
+    } else {
         openProfileWindow();
-    }    
+    }
 }
 
 loadProfiles();

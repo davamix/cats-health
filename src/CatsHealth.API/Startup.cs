@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CatsHealth.API.Data.Database;
 using CatsHealth.API.Data.Entities;
 using CatsHealth.API.Data.Repositories;
 using CatsHealth.API.Data.StorageProviders;
+using CatsHealth.API.Data.StorageProviders.MongoProvider;
 using CatsHealth.API.Services.ProfileService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +33,9 @@ namespace CatsHealth.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddSingleton<IStorageProvider<Profile>, ProfileStorage>();
+            // services.AddSingleton<IStorageProvider<Profile>, ProfileStorage>();
+            services.AddSingleton<IDatabaseConfiguration, DatabaseConfiguration>();
+            services.AddScoped<IStorageProvider<Profile>, ProfileStorageProvider>();
             services.AddScoped<IRepository<Profile>, ProfileRepository>();
             services.AddScoped<IProfileService, ProfileService>();
 

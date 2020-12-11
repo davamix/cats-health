@@ -41,8 +41,6 @@ namespace CatsHealth.API.Services.ProfileService
             {
                 var entity = dto.ToProfile();
 
-                entity.Id = Guid.NewGuid().ToString();
-
                 profileRepository.Insert(entity);
 
                 return new ProfileResponseDto(entity.Id, entity.Name);

@@ -7,20 +7,21 @@ const URL_PROFILES = "https://localhost:5001/api/Profile";
 const cardsContainer = document.getElementById("profile-cards-container");
 const profileImageDefault = "https://via.placeholder.com/400x225.webp?text=Profile+Picture";
 
-function loadProfiles(){
+function loadProfiles() {
     getRequestTo(urls.URL_PROFILES)
         .then(data => {
-            cardsContainer.innerHTML = "";
-            
-            data.forEach(profile =>{
-                addProfileCard(profile);
-            });
+            if (data) {
+                cardsContainer.innerHTML = "";
 
+                data.forEach(profile => {
+                    addProfileCard(profile);
+                });
+            }
             addProfileNewButton();
         });
 }
 
-function addProfileCard(profile){
+function addProfileCard(profile) {
     const profileEl = document.createElement("div");
     const profileImage = (profile.image) ? profile.image : profileImageDefault;
 
@@ -34,9 +35,9 @@ function addProfileCard(profile){
         </div>
     `
 
-    profileEl.addEventListener("click", (e) =>{
+    profileEl.addEventListener("click", (e) => {
         e.preventDefault();
-        
+
         storage.setAnimal(profile);
         location.assign("dashboard.html");
     });
@@ -44,7 +45,7 @@ function addProfileCard(profile){
     cardsContainer.appendChild(profileEl);
 }
 
-function addProfileNewButton(){
+function addProfileNewButton() {
     const profileEl = document.createElement("div");
     profileEl.classList.add("profile-card-add");
 
@@ -54,7 +55,7 @@ function addProfileNewButton(){
         </button>
     `
 
-    profileEl.addEventListener("click", ()=>{
+    profileEl.addEventListener("click", () => {
         console.log("Add new profile");
         storage.removeAnimal();
         location.assign("dashboard.html");
