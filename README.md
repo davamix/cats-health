@@ -2,7 +2,7 @@
 
 ## Requirements
 
-[.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0) and [MongoDB docker image](https://hub.docker.com/_/mongo)
+[.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0) and [MongoDB docker](https://hub.docker.com/_/mongo)
 
 ## Run with Docker
 
