@@ -2,7 +2,7 @@
 
 ## Run with Docker
 
-1. Generate a certificate. From `CatsHealth.API` folder execute:
+1. Generate a certificate. From `src/CatsHealth.API` folder execute:
 
     ```
     dotnet dev-certs https -v -ep ./cert-aspnetcore.pfx -p 1234
