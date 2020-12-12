@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  database:
+    image: mongo:4.4.2
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-volume:/data/db
+
+  backend:
+    build: ./src/CatsHealth.API
+    depends_on:
+      - database
+    image: cats-health:backend
+    ports:
+      - "5001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=1234
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/cert-aspnetcore.pfx
+    volumes:
+      - ./src/CatsHealth.API/cert-aspnetcore.pfx:/https/cert-aspnetcore.pfx:ro
+
+  web:
+    build: ./src/CatsHealth.Web
+    depends_on:
+      - backend
+      # - proxy
+    image: cats-health:web
+    ports:
+      - "80:80"
