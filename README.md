@@ -1,10 +1,33 @@
 # Cats Health (WIP)
 
-## Run
+## Run with Docker
 
-From <mark>src</mark> folder: `dotnet run -p CatsHealth.API`
+1. Generate a certificate. From `CatsHealth.API` folder execute:
 
-Navigate to `index.html`
+    ```
+    dotnet dev-certs https -v -ep ./cert-aspnetcore.pfx -p 1234
+    ```
+
+2. From the main folder: 
+
+    ```
+    docker-compose build
+    docker-compose up
+    ```
+
+## Run manually
+
+1. Download and run MongoDB:
+
+    ```
+    docker run -p 27017:27017 mongo:4.4.2
+    ```
+
+2. From `src` folder: `dotnet run -p CatsHealth.API`
+
+3. Navigate to `index.html`
+
+---
 
 ## TODO
 
