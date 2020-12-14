@@ -76,10 +76,52 @@ function loadDashboard() {
     const animal = storage.getAnimal();
 
     if (animal) {
-        dashboard.innerHTML = `<h1>${animal.name}'s Dashboard`;
+        dashboard.innerHTML = `<h1 class="title">${animal.name}'s Dashboard</h1>`;
+
+        loadCards();
     } else {
         openProfileWindow();
     }
+}
+
+async function loadCards(){
+    const cards = document.createElement("div");
+    cards.classList.add("cards");
+
+    createWeightCard(cards);
+    createVaccineeCard(cards);
+
+    dashboard.appendChild(cards);
+}
+
+function createWeightCard(parent){
+    const card = document.createElement("div");
+    card.classList.add("dashboard-card");
+    card.innerHTML = `
+        <div class="title">
+            <i class="fas fa-weight-hanging fa-2x"> 6.3 kg</i>
+        </div>
+        <div>
+            <p>13/10/2020</p>
+        </div>
+    `
+
+    parent.appendChild(card);
+}
+
+function createVaccineeCard(parent){
+    const card = document.createElement("div");
+    card.classList.add("dashboard-card");
+    card.innerHTML = `
+        <div class="title">
+            <i class="fas fa-syringe fa-2x"> Vaccine</i>
+        </div>
+        <div>
+            <p>Next: 13/10/2020</p>
+        </div>
+    `
+
+    parent.appendChild(card);
 }
 
 loadProfiles();
