@@ -35,6 +35,7 @@ namespace CatsHealth.API
 
             // services.AddSingleton<IStorageProvider<Profile>, ProfileStorage>();
             services.AddSingleton<IDatabaseConfiguration, DatabaseConfiguration>();
+            services.AddScoped<IDatabaseBootstrap, DatabaseBootstrap>();
             services.AddScoped<IStorageProvider<Profile>, ProfileStorageProvider>();
             services.AddScoped<IRepository<Profile>, ProfileRepository>();
             services.AddScoped<IProfileService, ProfileService>();
@@ -52,7 +53,7 @@ namespace CatsHealth.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +74,9 @@ namespace CatsHealth.API
             {
                 endpoints.MapControllers();
             });
+
+            serviceProvider.GetService<IDatabaseBootstrap>().Setup(true);
+            
         }
     }
 }
