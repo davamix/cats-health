@@ -98,9 +98,6 @@ main{
 
 .column{
     display: flex;
-    /* flex-direction: column; */
-    /* flex-basis: 100%; */
-    /* flex: 1; */
     height: 100%;
 }
 
@@ -127,24 +124,24 @@ main{
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* padding: 1rem; */
 }
 
 .dashboard-card{
     background-color: #b9f6ca;
     border-radius: 3px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-    min-width: 12rem;
-    min-height: 10rem;
+    min-width: 15rem;
+    min-height: 12rem;
     text-align: center;
     cursor: pointer;
     padding: 1rem;
     margin:1rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .dashboard-card:hover{
-    background-color: #ebfffb;
-    border: 1px solid #87c197;
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-card .title{
@@ -152,6 +149,36 @@ main{
     height: 70%;
 }
 
+.bottom-panel{
+    background-color: #87c197;
+    position: absolute;
+    overflow: auto;
+    left:0;
+    bottom:0;
+    right: 0;
+    width: 100%;
+    transform: translateY(101%);
+    transition: transform 0.3s ease-in;
+}
+
+.dashboard-card:hover .bottom-panel{
+    transform: translateY(0);
+}
+
+.dashboard-card .toolbar{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-card .toolbar button{
+    background-color: transparent;
+    border: none;
+    color: #ebfffb;
+    cursor: pointer;
+    font-size: 1rem;
+}
 
 /* PROFILE PANEL */
 
@@ -187,7 +214,7 @@ main{
 
 /* PROFILE WINDOW */
 
-.profile-window{
+.dialog{
     background: rgba(0,0,0,.4);
     display: none;
     height:100%;
@@ -198,17 +225,17 @@ main{
     z-index:10000;
 }
 
-.profile-window .popup-container{
+.dialog .popup-container{
     display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
 
-.profile-window .popup-content{
+.dialog .popup-content{
     border-radius: 10px;
 }
 
-.profile-window .title{
+.dialog .title{
     background-color: #87c197;
     color: #ebfffb;
     display: flex;
@@ -217,7 +244,18 @@ main{
     border-radius: 5px 5px 0 0;
 }
 
-.profile-window .animal-profile{
+.dialog .weight-content{
+    background-color: #ebfffb;
+    color: #000;
+    overflow: hidden;
+    width: 100%;
+    padding:0.5rem;
+    text-align: left;
+    display:flex;
+    flex-direction: column;
+}
+
+.dialog .profile-window{
     background-color: #ebfffb;
     color: #000;
     overflow: hidden;
@@ -225,16 +263,14 @@ main{
     padding:0.5rem;
     text-align: left;
     display:grid;
-    /* flex-direction: column; */
-    /* align-items: flex-start; */
     grid-template-columns: 60% 40%;
 }
 
-.profile-window .right{
+.dialog .right{
     text-align: center;
 }
 
-.profile-window .select-picture{
+.dialog .select-picture{
     background-color: transparent;
     border: 1px solid #87c197;
     height: 100%;
@@ -243,32 +279,31 @@ main{
     cursor: pointer;
 }
 
-.profile-window img{
+.dialog img{
     max-width: 130px;
     max-height: 130px;
 }
 
-.profile-window input[type="text"], input[type="date"]{
+.dialog input[type="text"], input[type="date"]{
     width: 100%;
     margin-bottom: 1rem;
     min-height: 2rem;
 }
 
-.profile-window fieldset{
+.dialog fieldset{
     border: 1px solid #87c197;
     margin-bottom: 1rem;
 }
 
-.profile-window .toolbar{
+.dialog .toolbar{
     background-color: #87c197;
-    /* color:#ebe5e2; */
     display:flex;
     justify-content: flex-end;
     padding: 0.5rem;
     border-radius: 0 0 5px 5px;
 }
 
-.profile-window .toolbar button{
+.dialog .toolbar button{
     background-color: transparent;
     border: none;
     color: #ebfffb;
@@ -277,7 +312,7 @@ main{
     margin-left: 0.5rem;
 }
 
-.profile-window > div{
+.dialog > div{
     background-color: #fff;
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
     display: inline-block;

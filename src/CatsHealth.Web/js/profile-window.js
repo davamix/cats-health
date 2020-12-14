@@ -3,8 +3,8 @@ import * as urls from "./urls.js";
 
 // ELEMENTS
 
-const saveButton = document.getElementById("save");
-const closeButton = document.getElementById("close");
+const saveButton = document.getElementById("profile-save-btn");
+const closeButton = document.getElementById("profile-close-btn");
 const profileWindow = document.getElementById("profile-window");
 
 // EVENTS 

@@ -1,5 +1,6 @@
 import { getRequestTo, postRequestTo } from "./requests.js";
 import { openProfileWindow } from "./profile-window.js";
+import { openWeightWindow } from "./weight-window.js";
 import * as storage from "./storage.js";
 import * as urls from "./urls.js";
 
@@ -104,7 +105,22 @@ function createWeightCard(parent){
         <div>
             <p>13/10/2020</p>
         </div>
+        <div class="bottom-panel">
+            <div class="toolbar">
+                <button class="add-btn" id="add-weight" title="Add new weight">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
     `
+
+    const addButton = card.querySelector(".add-btn");
+    
+    addButton.addEventListener("click", (e)=>{
+        e.preventDefault();
+        openWeightWindow();
+
+    });
 
     parent.appendChild(card);
 }
@@ -118,7 +134,7 @@ function createVaccineeCard(parent){
         </div>
         <div>
             <p>Next: 13/10/2020</p>
-        </div>
+        </div>        
     `
 
     parent.appendChild(card);
