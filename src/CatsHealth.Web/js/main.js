@@ -56,7 +56,6 @@ function addProfileNewButton() {
     `
 
     profileEl.addEventListener("click", () => {
-        console.log("Add new profile");
         storage.removeAnimal();
         location.assign("dashboard.html");
     });

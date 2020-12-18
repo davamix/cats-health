@@ -1,6 +1,6 @@
 import { getRequestTo, postRequestTo } from "./requests.js";
-import { openProfileWindow } from "./profile-window.js";
-import { openWeightWindow } from "./weight-window.js";
+import { openProfileWindow } from "./windows/profile-window.js";
+import { openWeightWindow } from "./windows/weight-window.js";
 import * as storage from "./storage.js";
 import * as urls from "./urls.js";
 
@@ -14,6 +14,18 @@ const profileImageDefault = "https://via.placeholder.com/120x67.webp";
 document.addEventListener("profile-saved", (e) => {
     loadProfiles();
     // insertProfile with e data in order to avoid a request in loadProfiles??
+});
+
+document.addEventListener("weight-saved", (data) =>{
+    const card = document.getElementById("card-weight");
+    const p_date = card.querySelector(".date");
+
+    const date = data.detail.weight.registeredOn;
+    console.log(date);
+
+    const formated_date = date.split("T")[0];
+
+    p_date.innerHTML = formated_date;
 });
 
 // FUNCTIONS
@@ -98,12 +110,13 @@ async function loadCards(){
 function createWeightCard(parent){
     const card = document.createElement("div");
     card.classList.add("dashboard-card");
+    card.setAttribute("id", "card-weight");
     card.innerHTML = `
         <div class="title">
             <i class="fas fa-weight-hanging fa-2x"> 6.3 kg</i>
         </div>
         <div>
-            <p>13/10/2020</p>
+            <p class="date">13/10/2020</p>
         </div>
         <div class="bottom-panel">
             <div class="toolbar">

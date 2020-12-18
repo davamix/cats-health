@@ -8,6 +8,7 @@ using CatsHealth.API.Data.Repositories;
 using CatsHealth.API.Data.StorageProviders;
 using CatsHealth.API.Data.StorageProviders.MongoProvider;
 using CatsHealth.API.Services.ProfileService;
+using CatsHealth.API.Services.WeightService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,8 +38,11 @@ namespace CatsHealth.API
             services.AddSingleton<IDatabaseConfiguration, DatabaseConfiguration>();
             services.AddScoped<IDatabaseBootstrap, DatabaseBootstrap>();
             services.AddScoped<IStorageProvider<Profile>, ProfileStorageProvider>();
+            services.AddScoped<IStorageProvider<Weight>, WeightStorageProvider>();
             services.AddScoped<IRepository<Profile>, ProfileRepository>();
+            services.AddScoped<IRepository<Weight>, WeightRepository>();
             services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IWeightService, WeightService>();
 
             services.AddCors(o => o.AddPolicy("AllowCors", builder =>
                         {
@@ -75,7 +79,7 @@ namespace CatsHealth.API
                 endpoints.MapControllers();
             });
 
-            serviceProvider.GetService<IDatabaseBootstrap>().Setup(true);
+            serviceProvider.GetService<IDatabaseBootstrap>().Setup();
             
         }
     }
