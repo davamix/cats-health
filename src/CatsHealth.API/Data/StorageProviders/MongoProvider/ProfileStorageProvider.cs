@@ -6,36 +6,48 @@ using MongoDB.Driver;
 
 namespace CatsHealth.API.Data.StorageProviders.MongoProvider
 {
-    public class ProfileStorageProvider : IStorageProvider<Profile>
+    public class ProfileStorageProvider : ProviderBase<Profile> //IStorageProvider<Profile>
     {
-        private readonly IDatabaseConfiguration configuration;
-        private readonly MongoClient client;
-        private readonly IMongoDatabase database;
+        // private readonly IDatabaseConfiguration configuration;
+        // private readonly MongoClient client;
+        // private readonly IMongoDatabase database;
         private IMongoCollection<Profile> profileCollection;
 
         public ProfileStorageProvider(IDatabaseConfiguration configuration)
+        : base(configuration)
         {
-            this.configuration = configuration;
+            // this.configuration = configuration;
 
-            client = new MongoClient(configuration.GetConnectionString());
-            database = client.GetDatabase(configuration.GetDatabase());
+            // client = new MongoClient(configuration.GetConnectionString());
+            // database = client.GetDatabase(configuration.GetDatabase());
 
             profileCollection = database.GetCollection<Profile>(configuration.GetProfileCollection());
         }
 
-        public Profile Get(string id){
-            return profileCollection.Find<Profile>(x=>x.Id == id).FirstOrDefault();
+        public override Profile Get(string id)
+        {
+            return profileCollection.Find<Profile>(x => x.Id == id).FirstOrDefault();
         }
-        public IList<Profile> Get(){
-            return profileCollection.Find(x=>true).ToList();
+        public override IList<Profile> Get()
+        {
+            return profileCollection.Find(x => true).ToList();
         }
-        public void Insert(Profile item){
+        public override void Insert(Profile item)
+        {
             profileCollection.InsertOne(item);
         }
-        public Profile Update(string id, Profile item){
-            throw new NotImplementedException();
+        public override Profile Update(string id, Profile item)
+        {
+            // var filter = Builders<Profile>.Filter.Eq("_id", id);
+
+            var update = Builders<Profile>.Update.Set(p => p.LastWeight, item.LastWeight);
+
+            profileCollection.UpdateOne(p => p.Id == id, update);
+
+            return item;
         }
-        public void Delete(string id){
+        public override void Delete(string id)
+        {
             throw new NotImplementedException();
         }
     }
