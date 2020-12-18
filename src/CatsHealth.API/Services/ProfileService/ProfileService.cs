@@ -47,5 +47,14 @@ namespace CatsHealth.API.Services.ProfileService
             }
             catch (Exception) { throw; }
         }
+
+        public void SetWeight(AddWeightRequest dto){
+            var profile = profileRepository.Get(dto.ProfileId);
+
+            profile.LastWeight = dto.ToWeight();
+
+            profileRepository.Update(profile.Id, profile);
+
+        }
     }
 }

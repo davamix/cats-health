@@ -9,5 +9,6 @@ namespace CatsHealth.API.Services.ProfileService
         IList<ProfileResponseDto> GetProfiles();
 
         ProfileResponseDto Save(ProfileRequestDto profile);
+        void SetWeight(AddWeightRequest dto);
     }
 }
