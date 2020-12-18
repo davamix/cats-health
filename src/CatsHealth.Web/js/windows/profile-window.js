@@ -1,5 +1,5 @@
-import { getRequestTo, postRequestTo } from "./requests.js";
-import * as urls from "./urls.js";
+import { getRequestTo, postRequestTo } from "../requests.js";
+import * as urls from "../urls.js";
 
 // ELEMENTS
 
@@ -45,8 +45,6 @@ function setData(data) {
 }
 
 function saveProfile() {
-    console.log("Save profile");
-
     const form = document.forms.animal_sex;
     const sexOption = form.elements.animal_sex;
 
@@ -60,14 +58,13 @@ function saveProfile() {
 
     postRequestTo(urls.URL_PROFILES, profile)
         .then(data => {
-            console.log(data);
             document.dispatchEvent(
                 new CustomEvent("profile-saved", {
                     detail: {
                         profile: data
                     }
                 })
-            )
+            );
         })
         .then(() => {
             closeWindow();
