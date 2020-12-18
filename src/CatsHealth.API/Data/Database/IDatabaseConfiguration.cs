@@ -3,5 +3,6 @@ namespace CatsHealth.API.Data.Database{
         string GetConnectionString();
         string GetDatabase();
         string GetProfileCollection();
+        string GetWeightCollection();
     }
 }

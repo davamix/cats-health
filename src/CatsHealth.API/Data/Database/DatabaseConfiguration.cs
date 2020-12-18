@@ -16,5 +16,6 @@ namespace CatsHealth.API.Data.Database
         public string GetDatabase() => configuration["MongoDatabaseSettings:DatabaseName"];
 
         public string GetProfileCollection() => configuration["MongoDatabaseSettings:ProfileCollection"];
+        public string GetWeightCollection() => configuration["MongoDatabaseSettings:WeightCollection"];
     }
 }
