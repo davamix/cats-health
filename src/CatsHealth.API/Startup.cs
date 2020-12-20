@@ -33,14 +33,12 @@ namespace CatsHealth.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            // services.AddSingleton<IStorageProvider<Profile>, ProfileStorage>();
             services.AddSingleton<IDatabaseConfiguration, DatabaseConfiguration>();
             services.AddScoped<IDatabaseBootstrap, DatabaseBootstrap>();
             services.AddScoped<IStorageProvider<Profile>, ProfileStorageProvider>();
-            services.AddScoped<IStorageProvider<Weight>, WeightStorageProvider>();
+            services.AddScoped<IWeightStorageProvider, WeightStorageProvider>();
             services.AddScoped<IRepository<Profile>, ProfileRepository>();
-            services.AddScoped<IRepository<Weight>, WeightRepository>();
+            services.AddScoped<IWeightRepository, WeightRepository>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IWeightService, WeightService>();
 

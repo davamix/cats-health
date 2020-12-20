@@ -7,7 +7,7 @@ namespace CatsHealth.API.Data.Repositories
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : EntityBase<T>
     {
-        private readonly IStorageProvider<T> storageProvider;
+        protected readonly IStorageProvider<T> storageProvider;
 
         public RepositoryBase(IStorageProvider<T> storageProvider)
         {

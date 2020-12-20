@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace CatsHealth.API.Data.StorageProviders.MongoProvider
 {
-    public class WeightStorageProvider : ProviderBase<Weight>
+    public class WeightStorageProvider : ProviderBase<Weight>, IWeightStorageProvider
     {
         private IMongoCollection<Weight> weightCollection;
 
@@ -35,10 +35,17 @@ namespace CatsHealth.API.Data.StorageProviders.MongoProvider
         {
             throw new NotImplementedException();
         }
-        
+
         public override void Delete(string id)
         {
             throw new NotImplementedException();
+        }
+
+        public Weight GetLastWeight(string profileId)
+        {
+            return weightCollection.Find(x => x.ProfileId == profileId)
+                .SortByDescending(x => x.RegisteredOn)
+                .FirstOrDefault();
         }
     }
 }

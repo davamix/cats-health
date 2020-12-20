@@ -8,9 +8,10 @@ namespace CatsHealth.API.Services.WeightService
 {
     public class WeightService : IWeightService
     {
-        private readonly IRepository<Weight> weightRepository;
+        // private readonly IRepository<Weight> weightRepository;
+        private readonly IWeightRepository weightRepository;
 
-        public WeightService(IRepository<Weight> weightRepository)
+        public WeightService(IWeightRepository weightRepository)
         {
             this.weightRepository = weightRepository;
         }
@@ -23,6 +24,13 @@ namespace CatsHealth.API.Services.WeightService
                 return new WeightResponse(dto.Value, dto.RegisteredOn);
             }
             catch (Exception) { throw; }
+        }
+
+        public WeightResponse GetLastWeight(string profileId)
+        {
+            var weight = weightRepository.GetLastWeight(profileId);
+
+            return weight != null ? new WeightResponse(weight.Value, weight.RegisteredOn) : null;
         }
     }
 }

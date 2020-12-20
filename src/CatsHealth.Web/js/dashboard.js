@@ -17,16 +17,17 @@ document.addEventListener("profile-saved", (e) => {
     // insertProfile with e data in order to avoid a request in loadProfiles??
 });
 
-document.addEventListener("weight-saved", (data) =>{
+// TODO: Move this event inside the component
+document.addEventListener("weight-saved", (data) => {
     const card = document.getElementById("card-weight");
-    const p_date = card.querySelector(".date");
+    const date_field = card.querySelector(".date");
+    const value_field = card.querySelector(".weight");
 
     const date = data.detail.weight.registeredOn;
-    console.log(date);
-
     const formated_date = date.split("T")[0];
 
-    p_date.innerHTML = formated_date;
+    date_field.innerHTML = formated_date;
+    value_field.innerHTML = data.detail.weight.value;
 });
 
 // FUNCTIONS
@@ -101,24 +102,26 @@ function loadDashboard() {
     }
 }
 
-async function loadCards(){
+async function loadCards() {
     const cards = document.createElement("div");
     cards.classList.add("cards");
 
-    createWeightCard(cards);
-    createVaccineeCard(cards);
+    const animal = storage.getAnimal();
+
+    await createWeightCard(animal, cards);
+    await createVaccineeCard(cards);
 
     dashboard.appendChild(cards);
 }
 
-function createWeightCard(parent){
+async function createWeightCard(animal, parent) {
     const component = new WeightComponent();
-    const card = component.createCard();
-    
-    parent.appendChild(card);
+
+    component.createCard(animal.id)
+        .then(card => parent.appendChild(card));
 }
 
-function createVaccineeCard(parent){
+async function createVaccineeCard(parent) {
     const component = new VaccineComponent();
     const card = component.createCard();
 

@@ -1,3 +1,4 @@
+using System;
 using CatsHealth.API.Dtos;
 using CatsHealth.API.Services.ProfileService;
 using CatsHealth.API.Services.WeightService;
@@ -16,6 +17,15 @@ namespace CatsHealth.API.Controllers
         {
             this.profileService = profileService;
             this.weightService = weightService;
+        }
+
+        [HttpGet]
+        [Route("{profileId}")]
+        public ActionResult<WeightResponse> LastWeight(string profileId)
+        {
+            var weight = weightService.GetLastWeight(profileId);
+
+            return weight == null ? NoContent() : Ok(weight);
         }
 
         [HttpPost]
