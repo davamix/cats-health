@@ -1,8 +1,9 @@
 import { getRequestTo, postRequestTo } from "./requests.js";
 import { openProfileWindow } from "./windows/profile-window.js";
-import { openWeightWindow } from "./windows/weight-window.js";
 import * as storage from "./storage.js";
 import * as urls from "./urls.js";
+import WeightComponent from "./components/Weight/weight-component.js";
+import VaccineComponent from "./components/Vaccine/vaccine-component.js";
 
 const dashboard = document.getElementById("dashboard");
 const profilePanel = document.getElementById("profile-panel");
@@ -88,6 +89,9 @@ function addProfileNewTab() {
 function loadDashboard() {
     const animal = storage.getAnimal();
 
+    // TODO:
+    // - Get data for cards based on animal Id. Weight, Vaccine...
+
     if (animal) {
         dashboard.innerHTML = `<h1 class="title">${animal.name}'s Dashboard</h1>`;
 
@@ -108,47 +112,15 @@ async function loadCards(){
 }
 
 function createWeightCard(parent){
-    const card = document.createElement("div");
-    card.classList.add("dashboard-card");
-    card.setAttribute("id", "card-weight");
-    card.innerHTML = `
-        <div class="title">
-            <i class="fas fa-weight-hanging fa-2x"> 6.3 kg</i>
-        </div>
-        <div>
-            <p class="date">13/10/2020</p>
-        </div>
-        <div class="bottom-panel">
-            <div class="toolbar">
-                <button class="add-btn" id="add-weight" title="Add new weight">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-        </div>
-    `
-
-    const addButton = card.querySelector(".add-btn");
+    const component = new WeightComponent();
+    const card = component.createCard();
     
-    addButton.addEventListener("click", (e)=>{
-        e.preventDefault();
-        openWeightWindow();
-
-    });
-
     parent.appendChild(card);
 }
 
 function createVaccineeCard(parent){
-    const card = document.createElement("div");
-    card.classList.add("dashboard-card");
-    card.innerHTML = `
-        <div class="title">
-            <i class="fas fa-syringe fa-2x"> Vaccine</i>
-        </div>
-        <div>
-            <p>Next: 13/10/2020</p>
-        </div>        
-    `
+    const component = new VaccineComponent();
+    const card = component.createCard();
 
     parent.appendChild(card);
 }

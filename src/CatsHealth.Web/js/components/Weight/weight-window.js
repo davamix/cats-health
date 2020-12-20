@@ -1,6 +1,6 @@
-import { getRequestTo, postRequestTo } from "../requests.js";
-import * as urls from "../urls.js";
-import * as storage from "../storage.js";
+import { getRequestTo, postRequestTo } from "../../requests.js";
+import * as urls from "../../urls.js";
+import * as storage from "../../storage.js";
 
 // ELEMENTS
 
