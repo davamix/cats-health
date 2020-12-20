@@ -109,7 +109,7 @@ async function loadCards() {
     const animal = storage.getAnimal();
 
     await createWeightCard(animal, cards);
-    await createVaccineeCard(cards);
+    await createVaccineCard(cards);
 
     dashboard.appendChild(cards);
 }
@@ -121,7 +121,7 @@ async function createWeightCard(animal, parent) {
         .then(card => parent.appendChild(card));
 }
 
-async function createVaccineeCard(parent) {
+async function createVaccineCard(parent) {
     const component = new VaccineComponent();
     const card = component.createCard();
 
